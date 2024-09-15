@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Apartamento</title>
+    <link rel="stylesheet" href="./assets/css/single-ap.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+  
+</head>
+<body>
+  <header class="header-main">
+    <div class="desktop-header">
+     <div class="Logo"><a href=""><h1>LocalSmart</h1></a></div>
+    <div class="navagation">
+     <nav>
+       <ul>
+         <li><a href="">Inicio</a></li>
+         <li><a href="">Apartamentos</a></li>
+         <li><a href="">Contato</a></li>
+       </ul>
+     </nav>
+    </div>
+    <div class="links-login-and-register">
+     <a id="login" href="http://127.0.0.1:5500/login.html">Fazer login</a>
+     <a id="register" href="http://127.0.0.1:5500/registro.html">Registrar</a>
+    </div>
+    </div>
+    <!---Mobile menu-->
+    <div class="header-mobile">
+   <div class="menu">
+     <div class="Logo"><a href=""><h1>LocalSmart</h1></a></div>
+     <button id="btn-menu"><i class="bi bi-list icone-menu"></i></button>
+   </div>
+   <div class="navagation-mobile">
+     <div class="navagation">
+       <nav>
+         <ul>
+           <li><a href="">Inicio</a></li>
+           <li><a href="">Apartamentos</a></li>
+           <li><a href="">Contato</a></li>
+         </ul>
+       </nav>
+      </div>
+      <div class="links">
+       <a href="">Fazer Login</a>
+       <a href="">Registrar</a>
+      </div>
+   </div>
+    </div>
+   </header>
+   <!---Header end-->
+
+  <section id="single-ap"></section>
+    <div class="container">
+        <h1 class="title-detail">Detalhes do Apartamento</h1>
+  <br>
+  <br>
+        <section class="gallery">
+            <img src="./assets/images/images.png" alt="Foto do Apartamento 1">
+            <img src="./assets/images/images.png" alt="Foto do Apartamento 2">
+            <img src="./assets/images/images.png" alt="Foto do Apartamento 3">
+        </section>
+
+        <section class="description">
+            <h2 class="">Descrição: </h2>
+            <p>Este apartamento é espaçoso e bem iluminado, com três quartos e dois banheiros. A cozinha está equipada com todos os eletrodomésticos necessários. O apartamento está localizado em um bairro tranquilo, perto de escolas, supermercados e transportes públicos. As regras incluem não permitir animais de estimação e não fumar dentro do apartamento.</p>
+        </section>
+
+        <section class="additional-info">
+            <h2>Informações:</h2>
+            <p><strong>Localização:</strong> Rua Exemplo, 123, Bairro, Cidade</p>
+            <p><strong>Proximidade:</strong> Próximo a parque, escolas e shopping.</p>
+            <p><strong>Transporte Público:</strong> Linha de ônibus e metrô a 5 minutos a pé.</p>
+        </section>
+
+        <section class="status">
+            <h2>Status do Imóvel</h2>
+            <!---Os status muda de cor as cores está na class-->
+             <!---no arquivo single-ap.css linha 13 verá todas as classes-->
+              <!---back-end faz a lógica dos status do single ap-->
+            <p id="status-text " class="alugado">Disponível</p>
+        </section>
+
+        <section class="schedule-visit">
+            <h2>Agendar Visita</h2>
+            <form id="visit-form">
+              <p class="sucesso-email">Seu email foi enviado</p>
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Data e Hora da Visita</label>
+                    <input type="datetime-local" id="datetime" name="datetime" required>
+                </div>
+                <button type="submit" class="btn">Agendar Visita</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+
+
+function setMinDate() {
+            const input = document.getElementById('datetime');
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth(); // 0-based index for months
+
+            // Formatar a data no formato YYYY-MM-DDTHH:MM
+            const minDate = new Date(year, month, 1);
+            const formattedMinDate = minDate.toISOString().slice(0, 16); // YYYY-MM-DDTHH:MM
+
+            input.setAttribute('min', formattedMinDate);
+        }
+
+        document.addEventListener('DOMContentLoaded', setMinDate);
+
+        document.getElementById('visit-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sua visita foi agendada com sucesso!');
+        });
+    </script>
+    <script src="/assets/js/header.js"></script>
+</body>
+</html>

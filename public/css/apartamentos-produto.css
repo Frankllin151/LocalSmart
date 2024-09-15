@@ -1,0 +1,126 @@
+@import url(./base.css);
+
+#apartamentos-produto {
+  padding: 0px 40px;
+}
+
+.apartamento-item {
+  margin-top: 20px;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--accent-orange);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+}
+
+.informacoes, .apartamento-item {
+  display: flex;
+}
+
+.img-produto img {
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.infomacao-all{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.info-quantidade-bh-qrt {
+padding-left: 40px;
+}
+.infomacao-all , .links-detalhe-and-status{
+  flex: 1;
+}
+.links-detalhe-and-status {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.info-titulo-and-preco h3 , .info-quantidade-bh-qrt h3 {
+  color: var(--white);
+  font-weight: var(--medium);
+}
+.info-titulo-and-preco p , .info-quantidade-bh-qrt p{
+  color: var(--white);
+ font-weight: var(--regular);
+}
+.status-ap , .link-detalhe{
+  color: var(--primary-blue);
+  font-weight: var(--medium);
+  padding: 10px 40px;
+  border-radius: var(--border-rd);
+  background: var(--white);
+}
+.link-detalhe {
+  color: var(--white);
+  font-weight: var(--medium);
+  background: var(--primary-blue) ;
+}
+/*pagination */
+.pagination{
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.anterior , .proximo{
+ padding: 10px 30px;
+ font-weight: var(--medium);
+ cursor: pointer;
+ color: var(--white);
+ border-radius: var(--border-rd);
+background: var(--accent-orange);
+}
+.number-anterior , .number-proximo{
+  padding: 10px;
+  cursor: pointer;
+  border-radius: var(--border-rd);
+  font-weight: var(--medium);
+  border: 1px solid var(--accent-orange);
+}
+.active-pagination{
+  background: var(--accent-orange);
+  color: var(--white);
+}
+
+@media screen and (min-width:768px) and (max-width:1023px)  {
+
+}
+
+@media screen and (max-width:768px) {
+  .info-titulo-and-preco {
+    display: block;
+  }
+ .apartamento-item {
+    flex-direction: column;
+    display: flex;
+}
+.infomacao-all , .links-detalhe-and-status {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.informacoes, .apartamento-item {
+  flex-direction: column;
+  display: flex;
+}
+.links-detalhe-and-status {
+ 
+  gap: 10px;
+}
+
+.anterior, .proximo {
+  padding: 10px 10px;
+  font-weight: var(--medium);
+  cursor: pointer;
+  color: var(--white);
+  border-radius: var(--border-rd);
+  background: var(--accent-orange);
+}
+}

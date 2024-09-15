@@ -1,0 +1,55 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url(../../node_modules/bootstrap-icons/font/bootstrap-icons.css);
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-blue: #001933; /* Azul profundo -> cor principal para texto */ 
+  --accent-orange: #fd7b1e; /* Laranja vibrante -> cor principal para fundo */
+  --alert-red: #D7263D;     /* Vermelho vivo -> cor para alerta */
+  --highlight-yellow: #FFD700; /* Amarelo dourado -> cor para aviso */
+  --success-green: #1CC600;  /* Verde escuro vibrante -> cor para alerta de sucesso */
+  --dark-gray: #222222;     /* Cinza escuro -> texto pequeno ou alerta de despejo */
+  --white:#fff;
+  --border-rd:30px;
+  --size-48:48px;
+  --p-size:16px;
+  --size-30:30px;
+  --size-25:25px;
+  --bold-font:bold;
+  --semibold:600;
+  --medium:500;
+  --regular:400;
+  --lighter:lighter;
+}
+body{
+  font-family: "Open Sans", sans-serif;
+}
+section{
+
+/*  padding: 0px 40px; */
+}
+h1,h2,h3,h4,h5,h6, a , li, span , small , p , button{
+  font-family: "Open Sans", sans-serif;
+  font-weight: lighter;
+  color: var(--dark-gray);
+}
+input {
+  outline: none;
+}
+button{
+  outline: none;
+  border: none;
+}
+a{
+  text-decoration: none;
+
+}
+li{
+  list-style: none;
+}

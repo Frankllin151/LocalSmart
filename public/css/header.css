@@ -1,0 +1,130 @@
+@import url(./base.css);
+.header-main{
+  padding: 10px 40px;
+  position: fixed;
+  top: 0;
+  background-color: var(--white);
+  width: 100%;
+  z-index: 20;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+}
+.header-mobile{
+  display: none;
+}
+.desktop-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+.Logo a h1{
+  color: var(--accent-orange);
+  font-weight: var(--medium);
+  font-size: var(--size-48);
+}
+.navagation nav ul {
+  display: flex;
+  align-items: center;
+}
+.navagation nav ul li{
+  margin-left: 20px;
+}
+.navagation nav ul li a{
+  font-size: var(--p-size);
+  font-weight: var(--medium);
+}
+.links-login-and-register #login, .links-login-and-register #register{
+    background-color: var(--accent-orange);
+    color: var( --white);
+  font-weight: var(--regular);
+  padding: 10px 20px;
+    border-radius: var(--border-rd);
+}
+
+/*Tablet*/
+@media screen and (min-width:768px) and (max-width:1023px){
+  .header-mobile{
+    display: none;
+  }
+.links-login-and-register{
+  display: flex;
+}
+.Logo a h1{
+  color: var(--accent-orange);
+  font-weight: var(--medium);
+  font-size: 35px;
+}
+
+
+}
+@media  screen and (max-width:768px) {
+  .desktop-header{
+    display: none;
+  }
+  .header-mobile{
+    z-index: 20;
+    
+    display: block;
+  }
+  .menu{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .Logo a h1{
+   
+    font-size: 35px;
+  }
+  #btn-menu{
+    font-size: 30px;
+    background: var(--white);
+  }
+  .navagation-mobile{
+padding: 10px;
+
+    display: none;
+  position: absolute; /* Mantém o menu sobreposto ao conteúdo */
+  right: 6px;
+  top: 60px; /* Ajuste conforme necessário */
+  width: 100%; /* Ajuste conforme necessário */
+  height:auto;
+  background-color: var(--accent-orange);
+
+  }
+  .active-nav-menu{
+    display: block;
+  }
+ .navagation-mobile .navagation nav{
+ display: flex;
+ flex-wrap: wrap;
+ }
+ .navagation-mobile .navagation nav ul {
+  display: flex;
+  flex-wrap: wrap;
+ 
+}
+ .navagation-mobile .navagation nav li{
+  flex: 1 1 auto; /* Permite que os itens ocupem o espaço disponível e quebrem conforme necessário */
+  margin: 5px; 
+ }
+  
+  .navagation nav ul li a{
+  color: var(--white);
+  font-size: var(--size-25);
+  font-weight:var(--medium);
+  }
+  .links{
+
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 30px;
+  }
+.links a{
+  margin: 5px;
+  color: var(--white);
+  background: var(--primary-blue);
+  padding: 10px 20px;
+  border-radius: var(--border-rd);
+}
+}

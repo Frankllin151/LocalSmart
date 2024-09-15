@@ -1,0 +1,48 @@
+@import url(./base.css);
+
+#pagina{
+  background:var(--primary-blue);
+  height: 350px;
+  margin-top: 85px;
+  display: flex;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+  align-items: center;
+  justify-content: center;
+}
+.content-pagina h1 , .content-pagina p{
+ color: var(--white);
+}
+.content-pagina h1{
+  font-size: var(--size-48);
+  font-weight: var(--bold-font);
+}
+.content-pagina p{
+  font-size: var(--p-size);
+  font-weight: var(--medium);
+}
+
+@media screen and (min-width:768px) and (max-width:1023px)  {
+  #pagina{
+   
+    margin-top: 70px;
+   
+  }
+  .content-pagina{
+    padding: 10px 40px;
+  }
+
+}
+@media screen and (max-width:768px){
+  .content-pagina{
+    padding: 10px 40px;
+  }
+  #pagina{
+   
+    margin-top: 70px;
+   
+  }
+  .content-pagina h1{
+    font-size: 30px;
+    font-weight: var(--bold-font);
+  }
+}

@@ -1,0 +1,87 @@
+@import url(./base.css);
+.register-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--primary-blue);
+}
+
+.register-form {
+  background-color: var(--white);
+  padding: 40px;
+  border-radius: var(--border-rd);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: var(--bold-font);
+  color: var(--primary-blue);
+}
+
+.form-group {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.form-group label {
+  font-weight: var(--medium);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-rd);
+  font-size: var(--p-size);
+}
+
+.error-message {
+  color: var(--alert-red);
+  font-size: var(--p-size);
+  margin-top: 5px;
+  display: block;
+}
+
+.register-form button {
+  width: 100%;
+  padding: 3px;
+  background-color: var(--accent-orange);
+  color: var(--white);
+  font-size: var(--size-25);
+  font-weight: var(--semibold);
+  border-radius: var(--border-rd);
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-form button:hover {
+  background-color: #e56e0e;
+}
+
+.login-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login-link p {
+  color: var(--dark-gray);
+  font-size: var(--p-size);
+}
+
+.login-link a {
+  color: var(--accent-orange);
+  font-weight: var(--semibold);
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

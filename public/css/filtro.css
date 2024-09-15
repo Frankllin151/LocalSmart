@@ -1,0 +1,90 @@
+@import url(./base.css);
+.filtro-buttons{
+  display: flex;
+  margin-top: 20px;
+  padding: 10px;
+  gap: 20px;
+  border: 2px solid var(--accent-orange);
+  justify-content: center;
+}
+
+
+.filtro-buttons select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none; /* Remove a seta padrão */
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+
+  font-size: var(--p-size);
+  color: var(--primary-blue);
+  background-color: var(--white);
+
+  border: 2px solid var(--accent-orange);
+  outline: none;
+}
+
+.filtro-buttons input[type="submit"] {
+  padding: 10px 20px;
+  font-size: var(--p-size);
+  font-weight: var(--semibold);
+  color: var(--white);
+  background-color: var(--accent-orange);
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filtro-buttons input[type="submit"]:hover {
+  background-color: var(--primary-blue);
+  
+}
+
+/* Estilos personalizados para Tom Select */
+.ts-control {
+  background-color: var(--white);
+  border: 2px solid var(--accent-orange);
+
+}
+
+
+
+.ts-dropdown {
+background: var(--white);
+  border: 2px solid var(--accent-orange);
+ 
+}
+
+.ts-control .ts-input {
+
+  color: var(--primary-blue);
+}
+
+.ts-control .item,
+.ts-dropdown .option {
+  color: var(--primary-blue);
+}
+@media screen and (min-width:768px) and (max-width:1023px)  {
+
+}
+
+@media screen and (max-width:768px){
+  .filtro-buttons{
+    display: flex;
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid var(--accent-orange);
+    justify-content: center;
+    flex-direction: column;
+
+  }
+  .filtro-buttons select , .filtro-buttons input{
+    margin-left: 0px;
+    margin-top: 10px;
+  }
+}
+
+
