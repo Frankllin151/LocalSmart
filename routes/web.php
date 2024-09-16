@@ -12,6 +12,8 @@ Route::get('/', function () {
 Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     // Outras rotas protegidas para admins
+    Route::get('/admin/adicionar' , [AdminController::class, 'adicionarApartamento'])->name('admin.adicionar');
+    Route::post('/admin/adicionar' , [AdminController::class, 'adicionarImoveis'])->name('admin.adicionarpost');
 });
 
 Route::get('/dashboard', function () {

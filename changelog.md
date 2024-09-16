@@ -8,6 +8,9 @@ Todas as mudanças notáveis neste projeto serão documentadas aqui.
 - **feat**: adicionar página de login para gerentes.
 - **feat**: adicionar página de registro para novos inquilinos e gerente.
 - **feat**: adicionar página Painel inqulinos e Gerente
+- **feat**: model, controller e migration imoveis criado
+- **feat**: inserir dados na tabela imoveis
+
 
 
 ### Alterado
