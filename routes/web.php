@@ -2,9 +2,16 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 Route::get('/', function () {
     return view('welcome');
+});
+
+// Rota protegida para administradores
+Route::middleware([AdminMiddleware::class])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    // Outras rotas protegidas para admins
 });
 
 Route::get('/dashboard', function () {
