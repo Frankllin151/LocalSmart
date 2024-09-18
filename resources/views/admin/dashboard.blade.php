@@ -31,12 +31,16 @@
                   <span class="text-2xl font-bold">LocalSmart</span>
               </div>
               <nav>
-                  <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">
+                  <a href="{{route('admin.dashboard')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white
+                  {{ Request::is('admin') ? 'bg-[#fd7b1e] text-white' : '' }}
+                  ">
                       Inicio
                   </a>
-                  <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">
-                      Apartamentos
-                  </a>
+                  <a href="{{route('admin.todosap')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white
+                  {{ Request::is('admin/todosap') ? 'bg-[#fd7b1e] text-white' : '' }}
+                  ">
+                  Apartamentos
+                </a>
                   <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">
                      Inquilinos
                   </a>
@@ -50,11 +54,7 @@
                       Relatórios
                   </a>
 
-                  <a href="{{route('admin.todosap')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white
-                  {{ Request::is('admin/todosap') ? 'bg-[#fd7b1e] text-white' : '' }}
-                  ">
-                  Apartamentos
-                </a>
+                  
               </nav>
           </nav>
   
@@ -62,17 +62,17 @@
           <div class="flex-1 flex flex-col overflow-hidden">
               <!-- Top bar -->
             @include('layouts.navigation')
-             <!-- Main content -->
+           <!-- Main content -->
 @if(isset($componente))
 @include('components.partials.adminCP.adicionar')
+@elseif(isset($apartamentosTodos))
+{{-- Exibe o conteúdo da variável $apartamentosTodos --}}
+@include('components.partials.adminCP.todosApartamentos', ['dadosImoveis' => $imoveis])
+@elseif(isset($imovel))
+@include('components.partials.adminCP.editar' , ['imovel' => $imovel])
 @else
-@if(isset($apartamentosTodos))
-    {{-- Exibe o conteúdo da variável $apartamentosTodos --}}
- @include('components.partials.adminCP.todosApartamentos' ,[ 'dadosImoveis' => $imoveis])
-@else
-    {{-- Inclui o componente padrão caso $apartamentosTodos não esteja definido --}}
-    @include('components.partials.adminCP.mainContent')
-@endif
+{{-- Inclui o componente padrão caso $apartamentosTodos não esteja definido --}}
+@include('components.partials.adminCP.mainContent')
 @endif
              
              

@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('imovels', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('imoveis', function (Blueprint $table) {
+            //
+            $table->string('status')->nullable();
+            $table->string('numero_ap')->nullable();
         });
     }
 
@@ -22,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('imovels');
+        Schema::table('imoveis', function (Blueprint $table) {
+            //
+        });
     }
 };

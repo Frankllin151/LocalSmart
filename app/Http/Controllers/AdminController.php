@@ -42,6 +42,7 @@ class AdminController extends Controller
         'foto1' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
         'foto2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
         'foto3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+         'status' => 'required|string|in:disponivel,alugado,vendido,indisponivel,em_manutencao'
     ]);
 
     // Verifica se a pasta 'public/images' existe, senão cria a pasta
@@ -83,6 +84,7 @@ class AdminController extends Controller
         'foto1' => 'images/' . $foto1Name,
         'foto2' => $foto2Path ? 'images/' . $foto2Name : null,
         'foto3' => $foto3Path ? 'images/' . $foto3Name : null,
+        'status' => $request->status
     ]);
 
     // Retornar o imóvel criado
@@ -93,5 +95,66 @@ class AdminController extends Controller
     ], 201); // Status code 201 Created
 }
 
+
+public function editarAp(Request $request , $id){
+ $imovel = Imovel::find($id);
+
+ if(!$imovel){
+   return response()->json([
+   'Failed' => true, 
+   'message' => 'Imovel não encontrado',
+   'data' => $imovel
+   ]);
+ }
+
+
+ return view('admin.dashboard', ['imovel' => $imovel]);
+}
+
+public function Atualizar(Request $request , $id)
+{
+  
+   // Captura os dados enviados do formulário
+   $dados = $request->input();
+   // Encontra o imóvel pelo ID
+   $imovel = Imovel::findOrFail($id);
+   
+   // Atualiza os dados do imóvel com os novos valores do request
+   $imovel->update([
+       'descricao' => $dados['descricao'],
+       'localizacao' => $dados['localizacao'],
+       'proximidade' => $dados['proximidade'],
+       'transporte_publico' => $dados['transporte_publico'],
+       'price' => $dados['preco'],
+       'quartos' => $dados['quartos'],
+       'banheiros' => $dados['banheiros'],
+       'status' => $dados['status'],
+   ]);
+
+     return response()->json([
+        'success' => true,
+        'message' => 'Imóvel Atualizado!',
+        'data' => $imovel
+    ], 201); // Status code 201 Created
+
+}
+
+public function excluirAp($id)
+{
+    // Encontrar o imóvel pelo ID
+    $imovel = Imovel::find($id);
+
+    // Verificar se o imóvel foi encontrado
+    if ($imovel) {
+        // Excluir o imóvel
+        $imovel->delete();
+
+        // Redirecionar ou retornar uma resposta de sucesso
+        return redirect()->route('admin.todosap')->with('success', 'Imóvel excluído com sucesso.');
+    } else {
+        // Redirecionar ou retornar uma resposta de erro se o imóvel não for encontrado
+        return redirect()->route('admin.todosap')->with('error', 'Imóvel não encontrado.');
+    }
+}
  
 }

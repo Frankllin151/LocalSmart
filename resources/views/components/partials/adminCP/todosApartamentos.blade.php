@@ -57,22 +57,46 @@
 
         <!-- Botões de ação -->
         <div class="flex justify-end space-x-4">
+            <!-- Botão Cancelar -->
             <button class="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300" onclick="closeModal()">Cancelar</button>
-            <button class="px-4 py-2 bg-[#fd7b1e] text-white rounded hover:bg-[#e06c1f]">Editar</button>
-            <button class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Excluir</button>
+
+            <!-- Botão Editar -->
+            <form id="editForm" method="GET" class="inline">
+                @csrf
+                
+                <button type="submit" class="px-4 py-2 bg-[#fd7b1e] text-white rounded hover:bg-[#e06c1f]">
+                    Editar
+                </button>
+            </form>
+
+            <!-- Botão Excluir -->
+            <form id="deleteForm" method="POST" class="inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+                    Excluir
+                </button>
+            </form>
         </div>
     </div>
 </div>
-
 <script>
     // Função para abrir o modal
     function openModal(id) {
         const modal = document.getElementById('modal');
         const modalText = document.getElementById('modalText');
-        modalText.textContent = `Você está prestes a editar ou excluir o imóvel `;
+        modalText.textContent = `Você está prestes a editar ou excluir o imóvel de ID ${id}.`;
         modal.classList.remove('hidden');
         modal.classList.add('flex');
-        
+
+        // Atualiza a rota do formulário de edição com o ID
+        const editForm = document.getElementById('editForm');
+        editForm.action = `/admin/${id}/editar`;
+
+        // Atualiza a rota do formulário de exclusão com o ID
+        const deleteForm = document.getElementById('deleteForm');
+        deleteForm.action = `/admin/${id}/excluir`;
+
         // Animação de entrada
         setTimeout(() => {
             modal.querySelector('.bg-white').style.transform = 'translateY(0)';

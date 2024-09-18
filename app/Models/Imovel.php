@@ -23,5 +23,7 @@ class Imovel extends Model
         'quartos',
         'banheiros',
         'price',
+        'status', 
+        'numero_ap'
     ];
 }

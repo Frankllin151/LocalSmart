@@ -15,6 +15,11 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/adicionar' , [AdminController::class, 'adicionarApartamento'])->name('admin.adicionar');
     Route::post('/admin/adicionar' , [AdminController::class, 'adicionarImoveis'])->name('admin.adicionarpost');
     Route::get('/admin/todosap' , [AdminController::class, 'todosAp'])->name('admin.todosap');
+    /// editar apartamento
+    Route::get('/admin/{id}/editar', [AdminController::class, 'editarAp'])->name('admin.editar');
+    Route::put('/admin/{id}/atualizar', [AdminController::class, 'Atualizar'])->name('admin.atualizar');
+    // excluir apartamento
+    Route::delete('/admin/{id}/excluir', [AdminController::class, 'excluirAp'])->name('admin.excluir');
 });
 
 Route::get('/dashboard', function () {

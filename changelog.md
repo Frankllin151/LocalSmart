@@ -23,4 +23,7 @@ Todas as mudanças notáveis neste projeto serão documentadas aqui.
 - **feat**: função alterado de adicionar (arquivo PNG armazena em public/images)
 - **style**: Header do painel do gerente modificado 
 - **feat**: Rederização dos componente mainContent do painel de gerente
+- **feat**: Methodo de routa para editar. 
+- **feat**: Tabela de banco de dados alterado migration(status e numero_ap)
+
 
