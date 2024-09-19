@@ -2,7 +2,7 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas aqui.
 
-## [1.0.0] - 2024-09-17
+## [1.0.0] - 2024-09-19
 
 ### Adicionado
 - **feat**: adicionar página de login para gerentes.
