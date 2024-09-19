@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Imovel;
-
+use App\Models\User;
+use App\Models\Inquilinos;
 class AdminController extends Controller
 {
     //
@@ -42,7 +43,8 @@ class AdminController extends Controller
         'foto1' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
         'foto2' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
         'foto3' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
-         'status' => 'required|string|in:disponivel,alugado,vendido,indisponivel,em_manutencao'
+         'status' => 'required|string|in:disponivel,alugado,vendido,indisponivel,em_manutencao',
+         'numeroap' => 'required|string'
     ]);
 
     // Verifica se a pasta 'public/images' existe, senão cria a pasta
@@ -84,15 +86,12 @@ class AdminController extends Controller
         'foto1' => 'images/' . $foto1Name,
         'foto2' => $foto2Path ? 'images/' . $foto2Name : null,
         'foto3' => $foto3Path ? 'images/' . $foto3Name : null,
-        'status' => $request->status
+        'status' => $request->status, 
+        'numero_ap' => $request->numeroap
     ]);
 
     // Retornar o imóvel criado
-    return response()->json([
-        'success' => true,
-        'message' => 'Imóvel criado com sucesso!',
-        'data' => $imovel
-    ], 201); // Status code 201 Created
+    return redirect('/admin/todosap')->with('adicionado' , 'Imóvel Adicionado!');
 }
 
 
@@ -113,6 +112,7 @@ public function editarAp(Request $request , $id){
 
 public function Atualizar(Request $request , $id)
 {
+    
   
    // Captura os dados enviados do formulário
    $dados = $request->input();
@@ -129,14 +129,11 @@ public function Atualizar(Request $request , $id)
        'quartos' => $dados['quartos'],
        'banheiros' => $dados['banheiros'],
        'status' => $dados['status'],
+       'numero_ap' => $dados['numeroap']
    ]);
 
-     return response()->json([
-        'success' => true,
-        'message' => 'Imóvel Atualizado!',
-        'data' => $imovel
-    ], 201); // Status code 201 Created
-
+  
+ return redirect('/admin/todosap')->with('status' , 'Imóvel Atualizado!');
 }
 
 public function excluirAp($id)
@@ -156,5 +153,30 @@ public function excluirAp($id)
         return redirect()->route('admin.todosap')->with('error', 'Imóvel não encontrado.');
     }
 }
+
+// parte inquilinos 
+public function inquIlinos()
+{
+
+
+    // Buscar todos os inquilinos com os usuários e imóveis relacionados, selecionando apenas os campos necessários
+    $inquilinos = Inquilinos::with(['user:id,name,email', 'imovel:id,numero_ap'])
+        ->select('id', 'user_id', 'imovel_id', 'pagamento_recente', 'status')
+        ->get();
+
+    return view('admin.dashboard', [
+        'inquilinos' => $inquilinos,
+    ]);
+}
  
+
+
+
+/// contralto inquilino
+ public function contraltoInquilino()
+ {
+    return view('admin.dashboard', [
+        'contralto' => 'contralto',
+    ]);
+ }
 }

@@ -44,4 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+    public function imoveis()
+{
+    return $this->belongsToMany(Imovel::class, 'inquilinos', 'user_id', 'imovel_id');
+}
+
 }

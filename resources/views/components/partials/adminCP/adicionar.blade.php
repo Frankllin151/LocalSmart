@@ -75,6 +75,13 @@
                       <input type="number" id="banheiros" name="banheiros" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-[#fd7b1e] focus:ring-[#fd7b1e] sm:text-sm" required>
                   </div>
 
+
+                   <!-- Numero Apartamento -->
+                   <div>
+                    <label for="numeroap" class="block text-sm font-medium text-gray-700">Numero do Apartamento</label>
+                    <input type="number" id="numeroap" name="numeroap" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-[#fd7b1e] focus:ring-[#fd7b1e] sm:text-sm" required>
+                </div>
+
                   <div>
                     <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                     <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-[#fd7b1e] focus:ring-[#fd7b1e] sm:text-sm" name="status" id="status">

@@ -11,7 +11,7 @@ Todas as mudanças notáveis neste projeto serão documentadas aqui.
 - **feat**: model, controller e migration imoveis criado
 - **feat**: inserir dados na tabela imoveis
 - **style**: modal para editar ou excluir imovel
-
+- **style**: contralto componente
 
 
 

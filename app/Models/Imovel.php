@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Inquilinos;
 class Imovel extends Model
 {
     use HasFactory;
@@ -26,4 +26,11 @@ class Imovel extends Model
         'status', 
         'numero_ap'
     ];
+
+public function inquilinos()
+{
+    return $this->hasMany(Inquilinos::class , 'imovel_id');
+}
+
+
 }

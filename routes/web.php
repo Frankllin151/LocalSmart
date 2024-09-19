@@ -20,6 +20,13 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::put('/admin/{id}/atualizar', [AdminController::class, 'Atualizar'])->name('admin.atualizar');
     // excluir apartamento
     Route::delete('/admin/{id}/excluir', [AdminController::class, 'excluirAp'])->name('admin.excluir');
+
+    // inquilinos 
+    Route::get('/admin/inquilinos' , [AdminController::class , 'inquIlinos'])
+    ->name('admin.inquilinos');
+
+    // contralto inquilino 
+    Route::get('/admin/contralto' , [AdminController::class, 'contraltoInquilino'])->name('admin.contralto');
 });
 
 Route::get('/dashboard', function () {

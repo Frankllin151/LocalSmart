@@ -41,7 +41,10 @@
                   ">
                   Apartamentos
                 </a>
-                  <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">
+                  <a 
+                  href="{{route('admin.inquilinos')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white
+                  {{ Request::is('admin.inquilinos') ? 'bg-[#fd7b1e] text-white' : '' }}
+                 " >
                      Inquilinos
                   </a>
                   <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">
@@ -50,8 +53,12 @@
                   <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">
                       Manutenção
                   </a>
-                  <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">
-                      Relatórios
+                  <a 
+                  href="{{route('admin.contralto')}}" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white
+                  {{ Request::is('admin.contralto') ? 'bg-[#fd7b1e] text-white' : '' }}
+                 " 
+                  >
+                     Contraltos
                   </a>
 
                   
@@ -70,6 +77,13 @@
 @include('components.partials.adminCP.todosApartamentos', ['dadosImoveis' => $imoveis])
 @elseif(isset($imovel))
 @include('components.partials.adminCP.editar' , ['imovel' => $imovel])
+
+@elseif(isset($inquilinos))
+@include('components.partials.adminCP.inquilinos' , [
+    'inquilinos' => $inquilinos])
+
+    @elseif(isset($contralto))
+    @include('components.partials.adminCP.contralto')
 @else
 {{-- Inclui o componente padrão caso $apartamentosTodos não esteja definido --}}
 @include('components.partials.adminCP.mainContent')

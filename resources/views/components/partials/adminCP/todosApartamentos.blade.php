@@ -1,18 +1,42 @@
 <!-- Apartment List -->
 <br>
 <div class="w-full overflow-hidden rounded-lg shadow-md">
+    @if (session('status'))
+    <div class="flex justify-center bg-green-100 text-green-700 font-bold p-4 mb-4">
+        <p>{{ session('status') }}</p>
+    </div>
+@endif
+
+@if (session('success'))
+    <div class="flex justify-center bg-green-100 text-green-700 font-bold p-4 mb-4">
+        <p>{{ session('success') }}</p>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="flex justify-center bg-red-100 text-red-700 font-bold p-4 mb-4">
+        <p>{{ session('error') }}</p>
+    </div>
+@endif
+
+@if (session('adicionado'))
+    <div class="flex justify-center bg-green-100 text-green-700 font-bold p-4 mb-4">
+        <p>{{ session('adicionado') }}</p>
+    </div>
+@endif
+
     <div class="w-full overflow-x-auto">
         <!-- Adicionar link estilizado -->
         <a href="{{ route('admin.adicionar') }}"
            class="inline-block px-4 py-2 mb-4 text-white bg-[#fd7b1e] rounded-lg hover:bg-[#e06c1f] focus:outline-none focus:ring-2 focus:ring-[#fd7b1e] focus:ring-opacity-50 mr-2 float-end">
            Adicionar
         </a>
-
+   
         <table class="w-full whitespace-no-wrap">
             <thead>
                 <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50">
                     <th class="px-4 py-3">Imagem</th>
-                    <th class="px-4 py-3">Título</th>
+                    <th class="px-4 py-3">Numero AP</th>
                     <th class="px-4 py-3">Preço</th>
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Data de Adição</th>
@@ -29,14 +53,14 @@
                                  loading="lazy" />
                                
                         </td>
-                        <td class="px-4 py-3 text-sm">{{ $imovel->titulo }}</td>
+                        <td class="px-4 py-3 text-sm">Apt {{ $imovel->numero_ap }} </td>
                         <td class="px-4 py-3 text-sm">R$ {{ number_format($imovel->price, 2, ',', '.') }}</td>
                         <td class="px-4 py-3 text-xs">
-                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">Disponível</span>
+                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full">{{ucfirst($imovel->status)}}</span>
                         </td>
                         <td class="px-4 py-3 text-sm">{{ $imovel->created_at->format('d/m/Y') }}</td>
                         <td class="px-4 py-3 text-sm">
-                            <button class="text-[#fd7b1e] hover:underline" onclick="openModal({{ $imovel->id }})">Ver Detalhes</button>
+                            <button class="text-[#fd7b1e] hover:underline" onclick="openModal({{ $imovel->id }} ,{{$imovel->numero_ap}})">Ver Detalhes</button>
                         </td>
                     </tr>
                 @endforeach
@@ -82,10 +106,10 @@
 </div>
 <script>
     // Função para abrir o modal
-    function openModal(id) {
+    function openModal(id , numero_ap) {
         const modal = document.getElementById('modal');
         const modalText = document.getElementById('modalText');
-        modalText.textContent = `Você está prestes a editar ou excluir o imóvel de ID ${id}.`;
+        modalText.textContent = `Você está prestes a editar ou excluir o APT: ${numero_ap}.`;
         modal.classList.remove('hidden');
         modal.classList.add('flex');
 

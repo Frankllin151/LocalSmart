@@ -73,6 +73,12 @@
                   <input type="number" id="quartos" name="quartos" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-[#fd7b1e] focus:ring-[#fd7b1e] sm:text-sm" required value="{{ old('quartos', $imovel->quartos ?? '') }}">
               </div>
 
+              <!---Numero do apartamento-->
+              <div>
+                <label for="numeroapt" class="block text-sm font-medium text-gray-700">Numero do Apartamento</label>
+                <input type="number" id="numeroapt" name="numeroap" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-[#fd7b1e] focus:ring-[#fd7b1e] sm:text-sm" required value="{{ old('quartos', $imovel->numero_ap ?? '') }}">
+            </div>
+
               <!-- Banheiros -->
               <div>
                   <label for="banheiros" class="block text-sm font-medium text-gray-700">Banheiros</label>
