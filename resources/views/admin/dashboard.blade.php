@@ -84,6 +84,8 @@
 
     @elseif(isset($contralto))
     @include('components.partials.adminCP.contralto')
+    @elseif(isset($usuarios))
+    @include('components.partials.adminCP.armazenacontralto')
 @else
 {{-- Inclui o componente padrão caso $apartamentosTodos não esteja definido --}}
 @include('components.partials.adminCP.mainContent')

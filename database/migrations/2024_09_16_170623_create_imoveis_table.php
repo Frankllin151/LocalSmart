@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('transporte_publico')->nullable();
             $table->string('quartos')->nullable();
             $table->string('banheiros')->nullable();
+            $table->string('numero_ap')->nullable();
+            $table->string('status')->nullable();
             $table->decimal('price', 10, 2);
             $table->timestamps();
         });

@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Requests\Auth\LoginRequest;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -27,11 +29,11 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 
     // contralto inquilino 
     Route::get('/admin/contralto' , [AdminController::class, 'contraltoInquilino'])->name('admin.contralto');
+    Route::get('/admin/addcontralto' , [AdminController::class, 'armazernaContralto'])->name('admin.addcontralto');
+    Route::post('/admin/armazendadoscontralto', [AdminController::class , 'salveContralto'])->name('admin.postcontralto');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class , 'PainelAdmin'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

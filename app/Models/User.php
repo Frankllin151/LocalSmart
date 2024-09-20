@@ -49,5 +49,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     return $this->belongsToMany(Imovel::class, 'inquilinos', 'user_id', 'imovel_id');
 }
-
+public function inquilino()
+{
+    return $this->hasOne(Inquilinos::class, 'user_id');
+}
 }

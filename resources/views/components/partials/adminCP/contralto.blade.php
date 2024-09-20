@@ -1,7 +1,13 @@
 <!-- Contract Component -->
 <br>
 <div class="w-full overflow-hidden rounded-lg shadow-md mb-6 ml-2 mr-2">
+    <a href="{{ route('admin.addcontralto') }}"
+    class="inline-block px-4 py-2 mb-4 text-white bg-[#fd7b1e] rounded-lg hover:bg-[#e06c1f] focus:outline-none focus:ring-2 focus:ring-[#fd7b1e] focus:ring-opacity-50 mr-2 float-end">
+    Adicionar
+ </a>
+
   <div class="w-full overflow-x-auto  bg-white rounded-lg shadow-md">
+
       <table class="w-full whitespace-no-wrap">
           <thead>
               <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50">

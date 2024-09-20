@@ -2,7 +2,7 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas aqui.
 
-## [1.0.0] - 2024-09-19
+## [1.0.0] - 2024-09-20
 
 ### Adicionado
 - **feat**: adicionar página de login para gerentes.
@@ -12,7 +12,8 @@ Todas as mudanças notáveis neste projeto serão documentadas aqui.
 - **feat**: inserir dados na tabela imoveis
 - **style**: modal para editar ou excluir imovel
 - **style**: contralto componente
-
+- **feat**: contrato adicionar inquilino feito
+- *style**: componente inquilino contrato feito
 
 
 
@@ -25,5 +26,5 @@ Todas as mudanças notáveis neste projeto serão documentadas aqui.
 - **feat**: Rederização dos componente mainContent do painel de gerente
 - **feat**: Methodo de routa para editar. 
 - **feat**: Tabela de banco de dados alterado migration(status e numero_ap)
-
+- **feat**: botão logado para is_admin feito
 

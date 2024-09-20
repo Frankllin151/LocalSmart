@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('imoveis', function (Blueprint $table) {
+        Schema::table('inquilinos', function (Blueprint $table) {
             //
-            $table->string('status')->nullable();
-            $table->string('numero_ap')->nullable();
+            $table->string('contrato_pdf');
         });
     }
 
@@ -23,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('imoveis', function (Blueprint $table) {
+        Schema::table('inquilinos', function (Blueprint $table) {
             //
         });
     }

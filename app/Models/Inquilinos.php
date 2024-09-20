@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inquilinos extends Model
 {
     use HasFactory;
+    public $timestamps = false;
     protected $table = 'inquilinos';
 
     protected $fillable = [
@@ -17,6 +18,7 @@ class Inquilinos extends Model
       'data_inicio_contrato', 
       'data_fim_contrato',
       'status',
+      'contrato_pdf',
       'pagamento_recente'
     ];
 

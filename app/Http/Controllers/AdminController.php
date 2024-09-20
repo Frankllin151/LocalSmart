@@ -74,7 +74,7 @@ class AdminController extends Controller
     $validatedData['titulo'] = $validatedData['titulo'] ?? 'Apartamento';
 
     // Inserir os dados no banco de dados
-    $imovel = Imovel::create([
+   Imovel::create([
         'titulo' => $validatedData['titulo'],
         'descricao' => $request->descricao,
         'localizacao' => $request->localizacao,
@@ -178,5 +178,62 @@ public function inquIlinos()
     return view('admin.dashboard', [
         'contralto' => 'contralto',
     ]);
+ }
+
+ public function armazernaContralto()
+ {
+    // Busca os usuários que não são admin (is_admin != 1) e que não têm relação com a tabela inquilinos
+    $usuarios = User::where('is_admin', '!=', 1)
+                    ->doesntHave('inquilino')
+                    ->get();
+    // Buscar imóveis que não têm inquilinos associados
+    $imoveis = Imovel::doesntHave('inquilinos')->get();
+    // Retorna a view com os usuários encontrados
+    return view('admin.dashboard', [
+        'usuarios' => $usuarios , 
+        'imoveis' => $imoveis
+            ]);
+ }
+
+ public function salveContralto(Request $request)
+ {
+
+     // Validação dos dados
+     $validatedData = $request->validate([
+        'user_id' => 'required|string',
+        'imovel_id' => 'required|string',
+        'data_inicio_contrato' => 'required|string',
+        'data_fim_contrato' => 'required|string',
+        'status' => 'required|string',
+        'contrato_pdf' => 'required|file|mimes:pdf|max:10240', // Limite de 10MB
+    ]);
+
+    // Verifica se a pasta 'public/contratos' existe, senão cria a pasta
+    if (!file_exists(public_path('contratos'))) {
+        mkdir(public_path('contratos'), 0755, true);
+    }
+
+    // Customiza o nome do arquivo PDF usando as datas de início e fim do contrato
+    $dataInicio = \Carbon\Carbon::parse($validatedData['data_inicio_contrato'])->format('Y-m-d');
+    $dataFim = \Carbon\Carbon::parse($validatedData['data_fim_contrato'])->format('Y-m-d');
+    $pdfFileName = "{$dataInicio}_to_{$dataFim}_" . time() . ".pdf";
+
+    // Move o arquivo PDF para o diretório 'public/contratos'
+     $request->file('contrato_pdf')->move(public_path('contratos'), $pdfFileName);
+
+    // Insere os dados no banco de dados
+
+    
+  Inquilinos::create([
+    'user_id' => $validatedData['user_id'],
+        'imovel_id' => $validatedData['imovel_id'],
+        'data_inicio_contrato' => $validatedData['data_inicio_contrato'],
+        'data_fim_contrato' => $validatedData['data_fim_contrato'],
+        'status' => $validatedData['status'],
+        'contrato_pdf' => $pdfFileName, // Salva o nome do arquivo PDF no banco
+  ]);
+
+    // Retorna uma resposta de sucesso ou redireciona
+    return redirect()->back()->with('contralto-sucess', 'Contrato salvo com sucesso!');
  }
 }
