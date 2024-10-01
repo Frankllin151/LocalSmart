@@ -62,6 +62,17 @@
                           <option value="pendente">Pendente</option>
                       </select>
                   </div>
+
+
+                  <div>
+                    <label for="status" class="block text-sm font-medium text-gray-700">Status do Apartamento</label>
+                    <select name="st-apartamento" id="status" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-[#fd7b1e] focus:ring-[#fd7b1e] sm:text-sm" required>
+                        <option value="disponivel">Disponivel</option>
+                        <option value="indisponivel">Indisponivel</option>
+                        <option value="vendido">Vendido</option>
+                        <option value="alugado">Alugado</option>
+                    </select>
+                </div>
               </div>
 
               <!-- Botão de Enviar -->

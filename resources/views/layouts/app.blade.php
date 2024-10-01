@@ -32,6 +32,7 @@
                     <nav>
                       <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">Visão Geral</a>
                       <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">Histórico de Pagamentos</a>
+                      <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">Pedir Manutenção</a>
                       <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">Notificações</a>
                       <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">Perfil do Usuário</a>
                       <a href="#" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-[#fd7b1e] hover:text-white">Contratos e Documentos</a>

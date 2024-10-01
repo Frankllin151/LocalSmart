@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Sep 19, 2024 at 02:38 PM
+-- Generation Time: Sep 20, 2024 at 06:33 PM
 -- Server version: 8.0.32
 -- PHP Version: 8.2.8
 
@@ -38,6 +38,8 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('77de68daecd823babbb58edb1c8e14d7106e83bb', 'i:1;', 1726764045),
+('77de68daecd823babbb58edb1c8e14d7106e83bb:timer', 'i:1726764045;', 1726764045),
 ('frankllinsilva300@gmail.com|172.19.0.1', 'i:1;', 1726750885),
 ('frankllinsilva300@gmail.com|172.19.0.1:timer', 'i:1726750885;', 1726750885);
 
@@ -99,7 +101,8 @@ CREATE TABLE `imoveis` (
 --
 
 INSERT INTO `imoveis` (`id`, `titulo`, `foto1`, `foto2`, `foto3`, `descricao`, `localizacao`, `proximidade`, `transporte_publico`, `quartos`, `banheiros`, `price`, `created_at`, `updated_at`, `status`, `numero_ap`) VALUES
-(4, 'Apartamento', 'images/1726599724_images.png', 'images/1726599724_images.png', 'images/1726599724_images.png', 'Este apartamento é espaçoso e bem iluminado, com três quartos e dois banheiros. A cozinha está equipada com todos os eletrodomésticos necessários. O apartamento está localizado em um bairro tranquilo, perto de escolas, supermercados e transportes públicos. As regras incluem não permitir animais de estimação e não fumar dentro do apartamento.', 'Rua Exemplo, 123, Bairro, Cidade', 'Próximo a parque, escolas e shopping.', 'Linha de ônibus e metrô a 5 minutos a pé.', '1', '1', 2000.00, '2024-09-17 19:02:04', '2024-09-19 14:32:33', 'disponivel', '305');
+(4, 'Apartamento', 'images/1726599724_images.png', 'images/1726599724_images.png', 'images/1726599724_images.png', 'Este apartamento é espaçoso e bem iluminado, com três quartos e dois banheiros. A cozinha está equipada com todos os eletrodomésticos necessários. O apartamento está localizado em um bairro tranquilo, perto de escolas, supermercados e transportes públicos. As regras incluem não permitir animais de estimação e não fumar dentro do apartamento.', 'Rua Exemplo, 123, Bairro, Cidade', 'Próximo a parque, escolas e shopping.', 'Linha de ônibus e metrô a 5 minutos a pé.', '1', '1', 2000.00, '2024-09-17 19:02:04', '2024-09-19 14:32:33', 'disponivel', '305'),
+(11, 'Apartamento', 'images/1726764851_images.png', 'images/1726764851_images.png', 'images/1726764851_images.png', 'Este apartamento é espaçoso e bem iluminado, com três quartos e dois banheiros. A cozinha está equipada com todos os eletrodomésticos necessários. O apartamento está localizado em um bairro tranquilo, perto de escolas, supermercados e transportes públicos. As regras incluem não permitir animais de estimação e não fumar dentro do apartamento.', 'Rua Exemplo, 123, Bairro, Cidade', 'Próximo a parque, escolas e shopping.', 'Linha de ônibus e metrô a 5 minutos a pé.', '3', '4', 3800.00, '2024-09-19 16:54:11', '2024-09-19 16:54:11', 'disponivel', '356');
 
 -- --------------------------------------------------------
 
@@ -114,15 +117,17 @@ CREATE TABLE `inquilinos` (
   `data_inicio_contrato` date DEFAULT NULL,
   `data_fim_contrato` date DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `pagamento_recente` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `pagamento_recente` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contrato_pdf` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `inquilinos`
 --
 
-INSERT INTO `inquilinos` (`id`, `user_id`, `imovel_id`, `data_inicio_contrato`, `data_fim_contrato`, `status`, `pagamento_recente`) VALUES
-(1, 1, 4, '2024-09-19', '2025-09-19', 'ativo', 'atrasado');
+INSERT INTO `inquilinos` (`id`, `user_id`, `imovel_id`, `data_inicio_contrato`, `data_fim_contrato`, `status`, `pagamento_recente`, `contrato_pdf`) VALUES
+(1, 1, 4, '2024-09-19', '2025-09-18', 'atrasado', '12/12/2024', ''),
+(3, 3, 11, '2024-09-28', '2024-11-30', 'pendente', NULL, '2024-09-28_to_2024-11-30_1726856721.pdf');
 
 -- --------------------------------------------------------
 
@@ -183,7 +188,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2024_09_15_202511_add_is_admin_to_users_table', 4),
 (11, '2024_09_16_170623_create_imoveis_table', 5),
 (12, '2024_09_18_133437_alter_imoveis', 6),
-(13, '2024_09_19_135326_create_inquilinos_table', 7);
+(13, '2024_09_19_135326_create_inquilinos_table', 7),
+(14, '2024_09_20_175118_alter_inquilinos_table', 8);
 
 -- --------------------------------------------------------
 
@@ -217,7 +223,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('yGgSPDZD7cTfM2Oc0ttUH4IgxKJAJCJP2NheHDpv', 2, '172.19.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibHhFTTcyQnE2RHJyVHJJeGtqNW9tbW8xU0l2RU5lSWZrb1dna3M1SSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly9sb2NhbGhvc3QvYWRtaW4vaW5xdWlsaW5vcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1726756656);
+('ct5eIeAx5g7gwiuD3KXTje2nTiEQ2OypPrbqHV9H', 2, '172.19.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOFRhbjNrek4wYUZOZ0l4VVdOWUswOUJYeFd6ZkpMOVp4M1R5ZFdTNiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly9sb2NhbGhvc3QvYWRtaW4vYWRkY29udHJhbHRvIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1726856721);
 
 -- --------------------------------------------------------
 
@@ -243,7 +249,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `is_admin`) VALUES
 (1, 'Teste', 'teste3@gmail.com', '2024-09-16 17:15:20', '$2y$12$Rk9bEXhW6FyL/cjV8z5Xj.CsXF7vrT31XeB3Ff0G7PWjZb3eq9osO', NULL, '2024-09-16 17:15:06', '2024-09-16 17:15:20', 0),
-(2, 'Roberto', 'roberto5@gmai.com', '2024-09-16 17:15:51', '$2y$12$2Ed/s2hmglqZJ7BK3sVk6OGrRIKTaCMfiVW.fd3jXwb8gtuWma9mm', NULL, '2024-09-16 17:15:38', '2024-09-16 17:15:51', 1);
+(2, 'Roberto', 'roberto5@gmai.com', '2024-09-16 17:15:51', '$2y$12$2Ed/s2hmglqZJ7BK3sVk6OGrRIKTaCMfiVW.fd3jXwb8gtuWma9mm', NULL, '2024-09-16 17:15:38', '2024-09-16 17:15:51', 1),
+(3, 'Vanessa Silva', 'va4@gamil.com', '2024-09-19 16:39:45', '$2y$12$7VTQvpo.PF/J/tdy9PwWuuVNYtMe3QY.AbbkVhVbiR0v6SoWBnobi', NULL, '2024-09-19 16:38:33', '2024-09-19 16:39:45', 0);
 
 --
 -- Indexes for dumped tables
@@ -336,13 +343,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `imoveis`
 --
 ALTER TABLE `imoveis`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `inquilinos`
 --
 ALTER TABLE `inquilinos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -354,13 +361,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

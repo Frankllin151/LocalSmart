@@ -2,7 +2,7 @@
 
 Todas as mudanças notáveis neste projeto serão documentadas aqui.
 
-## [1.0.0] - 2024-09-20
+## [1.0.0] - 2024-12-01
 
 ### Adicionado
 - **feat**: adicionar página de login para gerentes.
@@ -14,6 +14,7 @@ Todas as mudanças notáveis neste projeto serão documentadas aqui.
 - **style**: contralto componente
 - **feat**: contrato adicionar inquilino feito
 - *style**: componente inquilino contrato feito
+- **feat**: status do apartamento
 
 
 

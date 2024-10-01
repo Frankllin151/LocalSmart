@@ -175,8 +175,20 @@ public function inquIlinos()
 /// contralto inquilino
  public function contraltoInquilino()
  {
-    return view('admin.dashboard', [
+     // Selecionar os inquilinos com os respectivos imóveis
+     $inquilinos = Inquilinos::with(['user', 'imovel'])
+     ->get()
+     ->map(function ($inquilino) {
+         return [
+             'name' => $inquilino->user->name,                // Nome do usuário (inquilino)
+             'numero_ap' => $inquilino->imovel->numero_ap,    // Número do apartamento (imóvel)
+             'data_fim_contrato' => $inquilino->data_fim_contrato // Data de fim do contrato (da tabela inquilinos)
+         ];
+     });
+ 
+   return view('admin.dashboard', [
         'contralto' => 'contralto',
+        'PegarTodosinqui' => $inquilinos
     ]);
  }
 
@@ -198,6 +210,7 @@ public function inquIlinos()
  public function salveContralto(Request $request)
  {
 
+
      // Validação dos dados
      $validatedData = $request->validate([
         'user_id' => 'required|string',
@@ -205,6 +218,7 @@ public function inquIlinos()
         'data_inicio_contrato' => 'required|string',
         'data_fim_contrato' => 'required|string',
         'status' => 'required|string',
+        'st-apartamento' => 'required|string',
         'contrato_pdf' => 'required|file|mimes:pdf|max:10240', // Limite de 10MB
     ]);
 
@@ -222,8 +236,11 @@ public function inquIlinos()
      $request->file('contrato_pdf')->move(public_path('contratos'), $pdfFileName);
 
     // Insere os dados no banco de dados
-
-    
+    // Tabela imovel atualizado status 
+    $imovel = Imovel::find($validatedData['imovel_id']);
+    $imovel->status = $validatedData['st-apartamento'];
+    $imovel->save();
+ // Criado inquilino
   Inquilinos::create([
     'user_id' => $validatedData['user_id'],
         'imovel_id' => $validatedData['imovel_id'],

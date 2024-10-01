@@ -6,43 +6,47 @@
     Adicionar
  </a>
 
-  <div class="w-full overflow-x-auto  bg-white rounded-lg shadow-md">
+ <div class="w-full overflow-x-auto bg-white rounded-lg shadow-md">
+    <table class="w-full whitespace-no-wrap">
+        <thead>
+            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50">
+                <th class="px-4 py-3">Inquilinos</th>
+                <th class="px-4 py-3">Número AP</th>
+                <th class="px-4 py-3">Data Vencimento</th>
+                <th class="px-4 py-3">Ações</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y">
+            @foreach ($PegarTodosinqui as $inquilino)
+                <tr class="text-gray-700">
+                    <td class="px-4 py-3 text-sm">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full mr-3">
+                                <img class="object-cover w-full h-full rounded-full" 
+                                     src="https://via.placeholder.com/150" 
+                                     alt="Usuário {{ $inquilino['name'] }}" />
+                            </div>
+                            <span>{{ $inquilino['name'] }}</span>
+                        </div>
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        {{ $inquilino['numero_ap'] }} <!-- Acessando o número do apartamento -->
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        {{ \Carbon\Carbon::parse($inquilino['data_fim_contrato'])->format('d/m/Y') }} <!-- Formato da data -->
+                    </td>
+                    <td class="px-4 py-3 text-sm">
+                        <button onclick="openModal('{{ $inquilino['numero_ap'] }}', '{{ $inquilino['name'] }}', 'Contrato Padrão')" 
+                                class="text-[#fd7b1e] hover:underline">
+                            Ver detalhes
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
-      <table class="w-full whitespace-no-wrap">
-          <thead>
-              <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50">
-                <th class="px-4 py-3">Usuário</th>  
-                <th class="px-4 py-3">Numero AP</th>
-                  <th class="px-4 py-3">Contrato</th>
-                  <th class="px-4 py-3">Data vencimento</th>
-                  <th class="px-4 py-3">Ações</th>
-              </tr>
-          </thead>
-          <tbody class="bg-white divide-y">
-              <!-- Repetir esta linha para cada contrato -->
-              <tr class="text-gray-700">
-                 <!-- Coluna com imagem e nome do usuário -->
-                 <td class="px-4 py-3 text-sm">
-                  <div class="flex items-center">
-                      <div class="w-8 h-8 rounded-full mr-3">
-                          <img class="object-cover w-full h-full rounded-full" 
-                               src="https://via.placeholder.com/150" 
-                               alt="Usuário João Silva" />
-                      </div>
-                      <span>João Silva</span>
-                  </div>
-              </td>
-                  <td class="px-4 py-3 text-sm">Apt 305</td>
-                  <td class="px-4 py-3 text-sm">Contrato Padrão</td>
-                  <td class="px-4 py-3 text-sm">19/09/2025</td>
-                  <td class="px-4 py-3 text-sm">
-                   <button onclick="openModal('305', 'João Silva', 'Contrato Padrão')" class="text-[#fd7b1e] hover:underline">Ver detalhes</button>
-                  </td>
-              </tr>
-              <!-- Fim da repetição -->
-          </tbody>
-      </table>
-  </div>
 </div>
 
 <!----Modal---->
